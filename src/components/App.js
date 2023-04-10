@@ -1,12 +1,16 @@
 import React, { useReducer } from 'react';
-import { initialState } from '../reducers';
+import reducer, { initialState } from '../reducers';
 import './App.css';
-import reducer from '../reducers';
+import { addOne } from '../actions';
 import TotalDisplay from './TotalDisplay';
 import CalcButton from './CalcButton';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const handleOneClick = (e) => {
+    dispatch(addOne());
+  }
 
   return (
      <div className="App">
@@ -31,7 +35,7 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={1}/>
+              <CalcButton value={1} onClick={handleOneClick}/>
               <CalcButton value={2}/>
               <CalcButton value={3}/>
             </div>
